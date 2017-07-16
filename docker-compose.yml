@@ -1,0 +1,19 @@
+version: '2'
+
+networks:
+  app_tier:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.99.0.0/16
+         gateway: 172.99.5.254
+
+services:
+
+  latex-renderer:
+    build: docker/latex-renderer
+    image: rkl.io/latex-renderer
+    networks:
+      app_tier:
+        ipv4_address: 172.99.1.1
+
